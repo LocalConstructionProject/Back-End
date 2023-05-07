@@ -6,6 +6,7 @@ import {
   response,
   ResponseObject,
 } from '@loopback/rest';
+import {authenticate} from '@loopback/authentication';
 
 /**
  * OpenAPI response for ping()
@@ -39,6 +40,12 @@ const PING_RESPONSE: ResponseObject = {
  */
 export class PingController {
   constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
+
+  @get('/my-route')
+  @authenticate('basic')
+  async myRoute() {
+    return 'Authenticated!';
+  }
 
   // Map to `GET /ping`
   @get('/ping')

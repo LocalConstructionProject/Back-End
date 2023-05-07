@@ -1,5 +1,6 @@
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
+import * as dotenv from 'dotenv';
 import {
   RestExplorerBindings,
   RestExplorerComponent,
@@ -9,6 +10,14 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
+import {AuthenticationComponent, registerAuthenticationStrategy} from '@loopback/authentication';
+import {BasicAuthenticationStrategy} from './auth/BasicAuthenticationStrategy';
+
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({path: '.env.production'});
+} else {
+  dotenv.config({path: '.env.test'});
+}
 
 export {ApplicationConfig};
 
@@ -29,6 +38,8 @@ export class ConstructionApplication extends BootMixin(
       path: '/explorer',
     });
     this.component(RestExplorerComponent);
+    this.component(AuthenticationComponent);
+    registerAuthenticationStrategy(this, BasicAuthenticationStrategy);
 
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
