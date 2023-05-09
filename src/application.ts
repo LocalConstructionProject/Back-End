@@ -13,11 +13,13 @@ import {MySequence} from './sequence';
 import {AuthenticationComponent, registerAuthenticationStrategy} from '@loopback/authentication';
 import {BasicAuthenticationStrategy} from './auth/BasicAuthenticationStrategy';
 
-if (process.env.NODE_ENV === 'production') {
-  dotenv.config({path: '.env.production'});
-} else {
-  dotenv.config({path: '.env.test'});
-}
+// if (process.env.NODE_ENV === 'production') {
+//   dotenv.config({path: '.env.production'});
+// } else {
+//   dotenv.config({path: '.env.test'});
+// }
+
+dotenv.config()
 
 export {ApplicationConfig};
 

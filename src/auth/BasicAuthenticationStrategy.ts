@@ -1,7 +1,6 @@
 import {AuthenticationStrategy} from '@loopback/authentication';
 import {HttpErrors, Request} from '@loopback/rest';
 import {securityId, UserProfile} from '@loopback/security';
-import {inject} from '@loopback/core';
 
 export interface Credentials {
   username: string;
@@ -13,12 +12,6 @@ export class BasicAuthenticationStrategy implements AuthenticationStrategy {
 
   constructor(
     // Inject your environment variable here
-    @inject('config.username')
-    private username: string,
-    @inject('config.password')
-    private password: string,
-    @inject('config.role')
-    private role: string,
   ) {
   }
 
@@ -47,14 +40,14 @@ export class BasicAuthenticationStrategy implements AuthenticationStrategy {
       throw new HttpErrors.Unauthorized('Missing username or password.');
     }
 
-    if (credentials.username !== this.username || credentials.password !== this.password) {
+    if (credentials.username !== process.env.USERNAME || credentials.password !== process.env.PASSWORD) {
       throw new HttpErrors.Unauthorized('Invalid credentials.');
     }
 
     return {
       [securityId]: credentials.username, // replace with the user's ID
       name: credentials.username, // replace with the user's name
-      roles: [this.role], // replace with the user's roles
+      roles: [process.env.ROLE], // replace with the user's roles
     };
   }
 }
