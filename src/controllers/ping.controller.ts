@@ -42,18 +42,13 @@ const PING_RESPONSE: ResponseObject = {
 export class PingController {
   constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
 
-  @get('/my-route')
-  async myRoute() {
-    return 'Authenticated!';
-  }
-
   // Map to `GET /ping`
   @get('/ping')
   @response(200, PING_RESPONSE)
   ping(): object {
     // Reply with a greeting, the current time, the url, and request headers
     return {
-      greeting: 'Hello from LoopBack',
+      greeting: 'Hearty welcome to you.',
       date: new Date(),
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
