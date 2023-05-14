@@ -1,0 +1,6 @@
+{
+  "name": "db",
+  "connector": "mongodb",
+  "url": "mongodb+srv://localprivateconstruction:3t1VlUxaduw1Uy08@local-construction.to0idux.mongodb.net/?retryWrites=true&w=majority",
+  "useNewUrlParser": true
+}
