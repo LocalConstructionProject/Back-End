@@ -8,19 +8,19 @@ import {
 import {authenticate} from '@loopback/authentication';
 import {ProjectRepository} from '../repositories/project.repository';
 import {MongoDatasource} from '../datasources';
-import {MaterialsModel} from '../models';
+import {LabourModel} from '../models';
 
 /**
  * A simple controller to bounce back http requests
  */
 @authenticate('basic')
-export class MaterialsController {
+export class LabourController {
   constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {
   }
 
   repository = new ProjectRepository();
 
-  @get('/v1/materials/{id}')
+  @get('/v1/labour/{id}')
   getProjectById(
     @param.path.string('id') id: string,
   ): object {
@@ -28,32 +28,32 @@ export class MaterialsController {
     return new Promise<any>((resolve, reject) => {
       MongoDatasource.getClient().then(client => {
         if (id === 'all') {
-          resolve(this.repository.getAllMaterialDetails(client, 'Material details received successfully.'));
+          resolve(this.repository.getAllLabourDetails(client, 'Labour details received successfully.'));
         } else {
-          resolve(this.repository.getMaterialInformation(client, 'Material details received successfully.', id));
+          resolve(this.repository.getLabourInformation(client, 'Labour details received successfully.', id));
         }
       });
     });
   }
 
-  @post('/v1/materials/update')
+  @post('/v1/labour/update')
   updateProjectInformation(
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(MaterialsModel, {
-            title: 'MaterialsModel',
+          schema: getModelSchemaRef(LabourModel, {
+            title: 'LabourModel',
             exclude: [],
           }),
         },
       },
     })
-      materialModel: MaterialsModel,
+      labourModel: LabourModel,
   ): object {
     // Reply with a greeting, the current time, the url, and request headers
     return new Promise<any>((resolve, reject) => {
       MongoDatasource.getClient().then(client => {
-        resolve(this.repository.updateMaterialPrice(client, 'Material Price Updated successfully.', materialModel));
+        resolve(this.repository.updateLabourPrice(client, 'Labour Price Updated successfully.', labourModel));
       });
     });
   }

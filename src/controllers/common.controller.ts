@@ -3,7 +3,7 @@ import {
   Request,
   RestBindings,
   get,
-  param, post, getModelSchemaRef, requestBody,
+  param, post, getModelSchemaRef, requestBody, deprecated,
 } from '@loopback/rest';
 import {authenticate} from '@loopback/authentication';
 import {ProjectRepository} from '../repositories/project.repository';
@@ -59,6 +59,7 @@ export class CommonController {
   }
 
   @post('/v1/project/create')
+  @deprecated(true)
   createProject(
     @requestBody({
       content: {

@@ -1,8 +1,9 @@
 import {Model, model, property} from '@loopback/repository';
-import {StageUpdateModel} from './stage-update.model';
+import {MaterialUpdateModel} from './material-update.model';
+import {LabourUpdateModel} from './labour-update.model';
 
 @model({settings: {strict: false}})
-export class ProjectDetails extends Model {
+export class StageUpdateModel extends Model {
   @property({
     type: 'string',
     id: true,
@@ -18,41 +19,39 @@ export class ProjectDetails extends Model {
   name: string;
 
   @property({
+    type: 'string',
+  })
+  id: string;
+
+  @property({
     type: 'date',
     default: new Date(),
   })
   createdDate?: string;
 
   @property({
-    type: 'string',
-    default: "Dhalavaipuram",
+    type: 'array',
+    itemType: 'object'
   })
-  location?: string;
-
-  @property({
-    type: 'number',
-  })
-  contact?: number;
+  labourDetails?: [LabourUpdateModel];
 
   @property({
     type: 'array',
     itemType: 'object'
   })
-  stages?: [StageUpdateModel];
-
-  // Define well-known properties here
+  materialDetails?: [MaterialUpdateModel];
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [prop: string]: any;
 
-  constructor(data?: Partial<ProjectDetails>) {
+  constructor(data?: Partial<StageUpdateModel>) {
     super(data);
   }
 }
 
-export interface ProjectDetailsRelations {
+export interface StageUpdateModelRelations {
   // describe navigational properties here
 }
 
-export type ProjectDetailsWithRelations = ProjectDetails & ProjectDetailsRelations;
+export type StageUpdateModelWithRelations = StageUpdateModel & StageUpdateModelRelations;
