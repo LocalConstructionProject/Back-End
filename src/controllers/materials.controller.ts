@@ -30,7 +30,7 @@ export class MaterialsController {
         if (id === 'all') {
           resolve(this.repository.getAllMaterialDetails(client, 'Material details received successfully.'));
         } else {
-          resolve(this.repository.getMaterialInformation(client, 'Material details received successfully.', id));
+          resolve(this.repository.getMaterialInformation(client, 'Material detail of ' + id + ' received successfully.', id));
         }
       });
     });

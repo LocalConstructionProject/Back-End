@@ -24,6 +24,16 @@ export class LabourUpdateModel extends Model {
   @property({
     type: 'string',
   })
+  date: string;
+
+  @property({
+    type: 'string',
+  })
+  labourCount: number;
+
+  @property({
+    type: 'string',
+  })
   id: string;
 
   // Indexer property to allow additional data
