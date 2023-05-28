@@ -107,7 +107,7 @@ export class ProjectRepository {
         status: 'Success',
         statusCode: 200,
         message: messageOnSuccess,
-        data: result[0],
+        data: result,
       };
     }
   }
@@ -168,7 +168,7 @@ export class ProjectRepository {
         status: 'Success',
         statusCode: 200,
         message: messageOnSuccess,
-        data: result[0],
+        data: result,
       };
     }
   }
@@ -182,10 +182,7 @@ export class ProjectRepository {
       };
 
       const updateFilter = {
-        $set:
-          {
-            'amount': value.price
-          },
+        $set: value,
       };
 
       const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true});
@@ -230,7 +227,7 @@ export class ProjectRepository {
         status: 'Success',
         statusCode: 200,
         message: messageOnSuccess,
-        data: result[0],
+        data: result,
       };
     }
   }

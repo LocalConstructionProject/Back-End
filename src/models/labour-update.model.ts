@@ -23,6 +23,7 @@ export class LabourUpdateModel extends Model {
 
   @property({
     type: 'string',
+    default: new Date(),
   })
   date: string;
 
@@ -35,6 +36,12 @@ export class LabourUpdateModel extends Model {
     type: 'string',
   })
   id: string;
+
+  @property({
+    type: 'boolean',
+    default: false,
+  })
+  isPriceEditable: boolean;
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
