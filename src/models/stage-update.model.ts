@@ -37,6 +37,18 @@ export class StageUpdateModel extends Model {
 
   @property({
     type: 'array',
+    itemType: 'string'
+  })
+  labourIds?: [string];
+
+  @property({
+    type: 'array',
+    itemType: 'string'
+  })
+  materialIds?: [string];
+
+  @property({
+    type: 'array',
     itemType: 'object'
   })
   materialDetails?: [MaterialUpdateModel];
