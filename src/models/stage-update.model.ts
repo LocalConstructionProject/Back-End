@@ -1,6 +1,5 @@
 import {Model, model, property} from '@loopback/repository';
-import {MaterialUpdateModel} from './material-update.model';
-import {LabourUpdateModel} from './labour-update.model';
+import {ObjectId} from 'mongodb';
 
 @model({settings: {strict: false}})
 export class StageUpdateModel extends Model {
@@ -10,7 +9,7 @@ export class StageUpdateModel extends Model {
     generated: false,
     required: false,
   })
-  _id: string;
+  _id: ObjectId;
 
   @property({
     type: 'string',
@@ -29,29 +28,29 @@ export class StageUpdateModel extends Model {
   })
   createdDate?: string;
 
-  @property({
-    type: 'array',
-    itemType: 'object'
-  })
-  labourDetails?: [LabourUpdateModel];
+  // @property({
+  //   type: 'array',
+  //   itemType: 'object'
+  // })
+  // labourDetails?: [LabourUpdateModel];
 
   @property({
     type: 'array',
     itemType: 'string'
   })
-  labourIds?: [string];
+  labourIds?: string[];
 
   @property({
     type: 'array',
     itemType: 'string'
   })
-  materialIds?: [string];
+  materialIds?: string[];
 
-  @property({
-    type: 'array',
-    itemType: 'object'
-  })
-  materialDetails?: [MaterialUpdateModel];
+  // @property({
+  //   type: 'array',
+  //   itemType: 'object'
+  // })
+  // materialDetails?: [MaterialUpdateModel];
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

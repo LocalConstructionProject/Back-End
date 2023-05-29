@@ -36,6 +36,17 @@ export class StagesController {
     });
   }
 
+  // @get("/check")
+  // insertStages(
+  // ): object {
+  //   // Reply with a greeting, the current time, the url, and request headers
+  //   return new Promise<any>((resolve, reject) => {
+  //     MongoDatasource.getClient().then(client => {
+  //         resolve(this.repository.insertAllStages(client, 'Stages details received successfully.'));
+  //     });
+  //   });
+  // }
+
   @post('/v1/stages/update')
   updateProjectInformation(
     @requestBody({

@@ -1,6 +1,8 @@
 import {MongoClient, ObjectId} from 'mongodb';
-import {LabourModel, MaterialsModel, StageModel} from '../models';
-
+import {LabourModel, MaterialsModel, StageModel, StageUpdateModel} from '../models';
+import data from './data.json';
+import {StagesController} from '../controllers/stages.controller';
+import {randomUUID} from 'crypto';
 export class ProjectRepository {
 
   constructor() {
@@ -229,6 +231,34 @@ export class ProjectRepository {
         message: messageOnSuccess,
         data: result,
       };
+    }
+  }
+
+  async insertAllStages(client: MongoClient, messageOnSuccess: string): Promise<any> {
+    const collection = client.db('Main').collection('StagesList');
+    var a: any[] = [];
+    var t = 0;
+    data.map(async (value) => {
+      t+=1
+      const b = new StageUpdateModel();
+      b._id = ObjectId.createFromTime(Date.now()+t)
+      b.id = value.id
+      b.createdDate = Date()
+      b.name = value.name
+      b.labourIds = value.labourIds.split(",");
+      b.materialIds = value.materialIds.split(",");
+      const cursor = collection.insertOne(b);
+      const result = await cursor;
+      if (result !== undefined) {
+        a.push(result);
+      }
+    });
+
+    return {
+      status: 'Success',
+      statusCode: 200,
+      message: messageOnSuccess,
+      data: data,
     }
   }
 

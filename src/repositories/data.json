@@ -1,0 +1,116 @@
+﻿[
+  {
+    "name": "வானம் தோண்டுதல்",
+    "id": "1",
+    "materialIds": "17,31,33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "வானம் மெத்து",
+    "id": "2",
+    "materialIds": "33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "கல் கட்டு",
+    "id": "3",
+    "materialIds": "33",
+    "labourIds": "1,2,3,4"
+  },
+  {
+    "name": "கல்கட்டு பெல்ட்",
+    "id": "4",
+    "materialIds": "32,33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "மண் அள்ளிப்போட",
+    "id": "5",
+    "materialIds": "17,31,11,33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "மெட்டல்",
+    "id": "6",
+    "materialIds": "32,33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "செங்கல் கட்டு",
+    "id": "7",
+    "materialIds": "33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "லிண்டல் பெல்ட்",
+    "id": "8",
+    "materialIds": "32,33",
+    "labourIds": "1,2,3,4"
+  },
+  {
+    "name": "செப்டிக் டாங்க்",
+    "id": "9",
+    "materialIds": "17,33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "காம்பவுண்ட் சுவர்",
+    "id": "10",
+    "materialIds": "33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "பூச்சி வேலை",
+    "id": "11",
+    "materialIds": "33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "தட்டடி கான்கிரீட்",
+    "id": "12",
+    "materialIds": "32,33",
+    "labourIds": "1,2,3,4"
+  },
+  {
+    "name": "கப்பி தளவரிசை",
+    "id": "13",
+    "materialIds": "32,33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "கல் பதிப்பு",
+    "id": "14",
+    "materialIds": "33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "தளம் போடுதல்",
+    "id": "15",
+    "materialIds": "33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "தண்ணீர் தொட்டி",
+    "id": "16",
+    "materialIds": "33",
+    "labourIds": "1,2,3,4"
+  },
+  {
+    "name": "டைல்ஸ்",
+    "id": "17",
+    "materialIds": "33",
+    "labourIds": "1,2,3"
+  },
+  {
+    "name": "பில்லர்",
+    "id": "18",
+    "materialIds": "32,33",
+    "labourIds": "1,2,3,4"
+  },
+  {
+    "name": "Earth பீம்",
+    "id": "19",
+    "materialIds": "32,33",
+    "labourIds": "1,2,3,4"
+  }
+]
