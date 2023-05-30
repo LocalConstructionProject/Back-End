@@ -3,13 +3,14 @@ import {LabourModel, MaterialsModel, StageModel, StageUpdateModel} from '../mode
 import data from './data.json';
 import {StagesController} from '../controllers/stages.controller';
 import {randomUUID} from 'crypto';
+
 export class ProjectRepository {
 
   constructor() {
 
   }
 
-  async createNewProject(client: MongoClient, messageOnSuccess: string,toBeUpdated: any): Promise<any> {
+  async createNewProject(client: MongoClient, messageOnSuccess: string, toBeUpdated: any): Promise<any> {
     const collection = client.db('Main').collection('ConstructionProject');
 
     const updateFilter = {
@@ -119,14 +120,11 @@ export class ProjectRepository {
     var data: any[] = [];
     model.materials?.map(async (value) => {
       const filter = {
-        'id': value.id
+        'id': value.id,
       };
 
       const updateFilter = {
-        $set:
-          {
-            'amount': value.price
-          },
+        $set: value,
       };
 
       const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true});
@@ -141,7 +139,7 @@ export class ProjectRepository {
       statusCode: 200,
       message: messageOnSuccess,
       data: data,
-    }
+    };
   }
 
   async getAllLabourDetails(client: MongoClient, messageOnSuccess: string): Promise<any> {
@@ -157,6 +155,7 @@ export class ProjectRepository {
       };
     }
   }
+
   async getLabourInformation(client: MongoClient, messageOnSuccess: string, id: String): Promise<any> {
     const collection = client.db('Main').collection('LabourList');
     const filter = {
@@ -180,7 +179,7 @@ export class ProjectRepository {
     var data: any[] = [];
     model.labours?.map(async (value) => {
       const filter = {
-        'id': value.id
+        'id': value.id,
       };
 
       const updateFilter = {
@@ -199,7 +198,7 @@ export class ProjectRepository {
       statusCode: 200,
       message: messageOnSuccess,
       data: data,
-    }
+    };
   }
 
   async getAllStagesDetails(client: MongoClient, messageOnSuccess: string): Promise<any> {
@@ -239,14 +238,14 @@ export class ProjectRepository {
     var a: any[] = [];
     var t = 0;
     data.map(async (value) => {
-      t+=1
+      t += 1;
       const b = new StageUpdateModel();
-      b._id = ObjectId.createFromTime(Date.now()+t)
-      b.id = value.id
-      b.createdDate = Date()
-      b.name = value.name
-      b.labourIds = value.labourIds.split(",");
-      b.materialIds = value.materialIds.split(",");
+      b._id = ObjectId.createFromTime(Date.now() + t);
+      b.id = value.id;
+      b.createdDate = Date();
+      b.name = value.name;
+      b.labourIds = value.labourIds.split(',');
+      b.materialIds = value.materialIds.split(',');
       const cursor = collection.insertOne(b);
       const result = await cursor;
       if (result !== undefined) {
@@ -259,7 +258,7 @@ export class ProjectRepository {
       statusCode: 200,
       message: messageOnSuccess,
       data: data,
-    }
+    };
   }
 
   async updateStagesPrice(client: MongoClient, messageOnSuccess: string, model: StageModel): Promise<any> {
@@ -267,12 +266,12 @@ export class ProjectRepository {
     var data: any[] = [];
     model.stages?.map(async (value) => {
       const filter = {
-        'id': value.id
+        'id': value.id,
       };
 
       const updateFilter = {
         $set:
-          value,
+        value,
       };
 
       const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true});
@@ -287,7 +286,7 @@ export class ProjectRepository {
       statusCode: 200,
       message: messageOnSuccess,
       data: data,
-    }
+    };
   }
 
 }

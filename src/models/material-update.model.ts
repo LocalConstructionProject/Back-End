@@ -19,7 +19,7 @@ export class MaterialUpdateModel extends Model {
   @property({
     type: 'string',
   })
-  price: string;
+  amount: string;
 
   @property({
     type: 'string',
