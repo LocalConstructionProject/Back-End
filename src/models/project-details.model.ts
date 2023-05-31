@@ -1,15 +1,16 @@
 import {Model, model, property} from '@loopback/repository';
-import {StageUpdateModel} from './stage-update.model';
+import {ProjectStageDetails} from './project-stage-details';
+import {randomUUID, UUID} from 'crypto';
 
 @model({settings: {strict: false}})
 export class ProjectDetails extends Model {
   @property({
     type: 'string',
     id: true,
-    generated: false,
+    generated: true,
     required: false,
   })
-  _id: string;
+  _id : UUID = randomUUID();
 
   @property({
     type: 'string',
@@ -38,7 +39,7 @@ export class ProjectDetails extends Model {
     type: 'array',
     itemType: 'object'
   })
-  stages?: [StageUpdateModel];
+  stages?: [ProjectStageDetails];
 
   // Define well-known properties here
 

@@ -1,8 +1,6 @@
 import {MongoClient, ObjectId} from 'mongodb';
 import {LabourModel, MaterialsModel, StageModel, StageUpdateModel} from '../models';
 import data from './data.json';
-import {StagesController} from '../controllers/stages.controller';
-import {randomUUID} from 'crypto';
 
 export class ProjectRepository {
 
