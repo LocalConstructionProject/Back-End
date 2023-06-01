@@ -11,11 +11,7 @@ export class ProjectRepository {
   async createNewProject(client: MongoClient, messageOnSuccess: string, toBeUpdated: any): Promise<any> {
     const collection = client.db('Main').collection('ConstructionProject');
 
-    const updateFilter = {
-      $set:
-      toBeUpdated,
-    };
-    const cursor = collection.insertOne(updateFilter);
+    const cursor = collection.insertOne(toBeUpdated);
     const result = await cursor;
     if (result !== undefined) {
       return {
@@ -121,11 +117,7 @@ export class ProjectRepository {
         'id': value.id,
       };
 
-      const updateFilter = {
-        $set: value,
-      };
-
-      const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true});
+      const cursor = collection.findOneAndUpdate(filter, value, {upsert: true});
       const result = await cursor;
       if (result !== undefined) {
         data.push(result);
@@ -180,11 +172,7 @@ export class ProjectRepository {
         'id': value.id,
       };
 
-      const updateFilter = {
-        $set: value,
-      };
-
-      const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true});
+      const cursor = collection.findOneAndUpdate(filter, value, {upsert: true});
       const result = await cursor;
       if (result !== undefined) {
         data.push(result);
@@ -267,12 +255,7 @@ export class ProjectRepository {
         'id': value.id,
       };
 
-      const updateFilter = {
-        $set:
-        value,
-      };
-
-      const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true});
+      const cursor = collection.findOneAndUpdate(filter, value, {upsert: true});
       const result = await cursor;
       if (result !== undefined) {
         data.push(result);

@@ -59,7 +59,6 @@ export class CommonController {
   }
 
   @post('/v1/project/create')
-  @deprecated(true)
   createProject(
     @requestBody({
       content: {
