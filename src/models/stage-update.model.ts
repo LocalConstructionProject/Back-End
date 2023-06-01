@@ -23,8 +23,7 @@ export class StageUpdateModel extends Model {
   id: string;
 
   @property({
-    type: 'date',
-    default: new Date(),
+    type: 'string',
   })
   createdDate?: string;
 

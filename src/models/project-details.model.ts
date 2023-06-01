@@ -19,8 +19,7 @@ export class ProjectDetails extends Model {
   name: string;
 
   @property({
-    type: 'date',
-    default: new Date(),
+    type: 'string',
   })
   createdDate?: string;
 
