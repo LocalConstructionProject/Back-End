@@ -1,5 +1,5 @@
 import {Model, model, property} from '@loopback/repository';
-import {ObjectId} from 'mongodb';
+import {randomUUID, UUID} from 'crypto';
 
 @model({settings: {strict: false}})
 export class StageEntryRecord extends Model {
@@ -8,7 +8,7 @@ export class StageEntryRecord extends Model {
     id: true,
     generated: true,
   })
-  _id: ObjectId;
+  _id: UUID = randomUUID();
 
   @property({
     type: 'string',
@@ -19,7 +19,7 @@ export class StageEntryRecord extends Model {
   @property({
     type: 'string',
   })
-  id: string;
+  stageTypeId: string;
 
   @property({
     type: 'string',
@@ -38,19 +38,19 @@ export class StageEntryRecord extends Model {
   dateOfExecution?: string;
 
   @property({
-    type: 'string',
+    type: 'number',
   })
-  count: string;
+  count: number;
 
   @property({
-    type: 'string',
+    type: 'number',
   })
-  priceForTheDay: string;
+  priceForTheDay: number;
 
   @property({
-    type: 'string',
+    type: 'number',
   })
-  totalPrice: string;
+  totalPrice: number;
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
