@@ -117,7 +117,12 @@ export class ProjectRepository {
         'id': value.id,
       };
 
-      const cursor = collection.findOneAndUpdate(filter, { $set:  value}, {upsert: true});
+      const cursor = collection.findOneAndUpdate(filter, {
+        $set: {
+          name: value.name,
+          amount: value.amount,
+        },
+      }, {upsert: true});
       const result = await cursor;
       if (result !== undefined) {
         data.push(result);
@@ -172,7 +177,16 @@ export class ProjectRepository {
         'id': value.id,
       };
 
-      const cursor = collection.findOneAndUpdate(filter, { $set: value}, {upsert: true});
+      const cursor = collection.findOneAndUpdate(filter, {
+        $set: {
+          price: value.price,
+          labourCount: value.labourCount,
+          name: value.name,
+          date: value.date,
+          id: value.id,
+          isPriceEditable: value.isPriceEditable,
+        },
+      }, {upsert: true});
       const result = await cursor;
       if (result !== undefined) {
         data.push(result);
@@ -255,7 +269,7 @@ export class ProjectRepository {
         'id': value.id,
       };
 
-      const cursor = collection.findOneAndUpdate(filter, value, {upsert: true});
+      const cursor = collection.findOneAndUpdate(filter, {$set: value}, {upsert: true});
       const result = await cursor;
       if (result !== undefined) {
         data.push(result);
