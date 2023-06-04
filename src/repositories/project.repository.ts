@@ -27,7 +27,7 @@ export class ProjectRepository {
     const collection = client.db('Main').collection('ConstructionProject');
     const cursor = collection.find({});
     const result = await cursor.toArray();
-    if (result !== undefined && result.length > 0) {
+    if (result !== undefined) {
       return {
         status: 'Success',
         statusCode: 200,
