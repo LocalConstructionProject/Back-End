@@ -1,4 +1,4 @@
-import {MongoClient, ObjectId} from 'mongodb';
+import {MongoClient, ObjectId, Transaction} from 'mongodb';
 import {LabourModel, MaterialsModel, StageModel, StageUpdateModel} from '../models';
 import data from './data.json';
 
@@ -117,7 +117,7 @@ export class ProjectRepository {
         'id': value.id,
       };
 
-      const cursor = collection.findOneAndUpdate(filter, value, {upsert: true});
+      const cursor = collection.findOneAndUpdate(filter, { $set:  value}, {upsert: true});
       const result = await cursor;
       if (result !== undefined) {
         data.push(result);
@@ -172,7 +172,7 @@ export class ProjectRepository {
         'id': value.id,
       };
 
-      const cursor = collection.findOneAndUpdate(filter, value, {upsert: true});
+      const cursor = collection.findOneAndUpdate(filter, { $set: value}, {upsert: true});
       const result = await cursor;
       if (result !== undefined) {
         data.push(result);
