@@ -36,6 +36,18 @@ export class CommonController {
     });
   }
 
+  @get("/v1/project/delete/{id}")
+  deleteProjectById(
+    @param.path.string('id') id: string,
+  ): object {
+    // Reply with a greeting, the current time, the url, and request headers
+    return new Promise<any>((resolve, reject) => {
+      MongoDatasource.getClient().then(client => {
+          resolve(this.repository.deleteProjectInformation(client, 'Project removed successfully.', id));
+      });
+    });
+  }
+
   @post('/v1/project/update')
   updateProjectInformation(
     @requestBody({

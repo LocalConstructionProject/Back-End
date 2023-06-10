@@ -55,6 +55,24 @@ export class ProjectRepository {
     }
   }
 
+  async deleteProjectInformation(client: MongoClient, messageOnSuccess: string, id: String): Promise<any> {
+    const collection = client.db('Main').collection('ConstructionProject');
+    const filter = {
+      '_id': id as unknown as ObjectId,
+    };
+
+    const cursor = collection.deleteOne(filter);
+    const result = await cursor;
+    if (result !== undefined) {
+      return {
+        status: 'Success',
+        statusCode: 200,
+        message: messageOnSuccess,
+        data: result,
+      };
+    }
+  }
+
   async updateProjectInfo(client: MongoClient, messageOnSuccess: string, id: string, toBeUpdated: any): Promise<any> {
     const collection = client.db('Main').collection('ConstructionProject');
     const filter = {
