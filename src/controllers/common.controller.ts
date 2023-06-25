@@ -3,7 +3,7 @@ import {
   Request,
   RestBindings,
   get,
-  param, post, getModelSchemaRef, requestBody, deprecated,
+  param, post, getModelSchemaRef, requestBody,
 } from '@loopback/rest';
 import {authenticate} from '@loopback/authentication';
 import {ProjectRepository} from '../repositories/project.repository';
