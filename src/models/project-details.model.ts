@@ -1,6 +1,7 @@
 import {Model, model, property} from '@loopback/repository';
 import {ProjectStageDetails} from './project-stage-details';
 import {randomUUID, UUID} from 'crypto';
+import {ProjectPaymentDetailsModel} from "./project-payment-details.model";
 
 @model({settings: {strict: false}})
 export class ProjectDetails extends Model {
@@ -39,6 +40,12 @@ export class ProjectDetails extends Model {
     itemType: 'object'
   })
   stages?: [ProjectStageDetails];
+
+  @property({
+    type: 'array',
+    itemType: 'object'
+  })
+  paymentDetails?: [ProjectPaymentDetailsModel];
 
   // Define well-known properties here
 
