@@ -16,12 +16,6 @@ export class ProjectPaymentDetailsModel extends Model {
   paymentType: string;
 
   @property({
-    type: 'date',
-    default: new Date(),
-  })
-  insertedDate?: string;
-
-  @property({
     type: 'string',
   })
   dateOfPayment?: string;
