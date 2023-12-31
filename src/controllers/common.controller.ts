@@ -55,7 +55,6 @@ export class CommonController {
         'application/json': {
           schema: getModelSchemaRef(ProjectDetails, {
             title: 'ProjectDetails',
-            exclude: [],
           }),
         },
       },
@@ -77,7 +76,6 @@ export class CommonController {
         'application/json': {
           schema: getModelSchemaRef(ProjectDetails, {
             title: 'ProjectDetails',
-            exclude: [],
           }),
         },
       },
