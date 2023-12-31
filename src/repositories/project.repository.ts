@@ -88,7 +88,7 @@ export class ProjectRepository {
       $set:
       toBeUpdated,
     };
-    const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true});
+    const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true, bypassDocumentValidation: true});
     const result = await cursor;
     if (result !== undefined) {
       return {
@@ -345,9 +345,9 @@ export class ProjectRepository {
       html: html,
       data: {
         users: users,
-        title: 'Hi Yabaze..!'
+        title: 'Hi Yabaze..!',
       },
-      path: 'src/files/'+(moment(Date()))+'.pdf',
+      path: 'src/files/' + (moment(Date())) + '.pdf',
       type: '',
     };
     return new Promise<any>((resolve, reject) => {
