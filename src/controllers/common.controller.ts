@@ -8,7 +8,9 @@ import {
 import {authenticate} from '@loopback/authentication';
 import {ProjectRepository} from '../repositories/project.repository';
 import {MongoDatasource} from '../datasources';
-import {ProjectDetails} from '../models';
+import {ProjectDetails, ProjectPaymentDetailsModel} from '../models';
+import {property} from '@loopback/repository';
+import array = property.array;
 
 /**
  * A simple controller to bounce back http requests

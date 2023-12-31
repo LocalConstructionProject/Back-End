@@ -40,14 +40,14 @@ export class ProjectDetails extends Model {
     itemType: 'object',
     default: []
   })
-  stages: [ProjectStageDetails];
+  stages?: [ProjectStageDetails];
 
   @property({
     type: 'array',
     itemType: 'object',
     default: []
   })
-  paymentDetails: [ProjectPaymentDetailsModel];
+  paymentDetails?: [ProjectPaymentDetailsModel];
 
   // Define well-known properties here
 
