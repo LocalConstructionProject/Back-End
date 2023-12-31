@@ -18,7 +18,7 @@ export class PdfController {
   constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
   repository = new ProjectRepository();
 
-  @get('/files')
+  @get('/v1/files')
   @oas.response.file()
   async downloadFile(
     @requestBody({
