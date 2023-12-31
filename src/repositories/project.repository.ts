@@ -88,7 +88,7 @@ export class ProjectRepository {
       $set:
       toBeUpdated,
     };
-    const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true, bypassDocumentValidation: true});
+    const cursor = collection.findOneAndUpdate(filter, updateFilter, {upsert: true});
     const result = await cursor;
     if (result !== undefined) {
       return {
