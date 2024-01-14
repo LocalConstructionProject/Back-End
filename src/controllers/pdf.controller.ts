@@ -6,9 +6,9 @@ import {
   oas, Response, requestBody, getModelSchemaRef,
 } from '@loopback/rest';
 import {ProjectRepository} from '../repositories/project.repository';
-import {ProjectDetails} from '../models';
 
 import {authenticate} from '@loopback/authentication';
+import {QuizQuestionsModel} from '../models/quiz-questions.model';
 
 /**
  * A simple controller to bounce back http requests
@@ -24,17 +24,16 @@ export class PdfController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(ProjectDetails, {
-            title: 'ProjectDetails',
-            exclude: [],
+          schema: getModelSchemaRef(QuizQuestionsModel, {
+            title: 'QuizQuestionsModel',
           }),
         },
       },
     })
-      projectInfo: ProjectDetails,
+      requestData: QuizQuestionsModel,
     @inject(RestBindings.Http.RESPONSE) response: Response,
   ) {
-    const data = await this.repository.createPdfFile()
+    const data = await this.repository.createPdfFile(requestData)
     response.download(data.filename);
     return response;
   }

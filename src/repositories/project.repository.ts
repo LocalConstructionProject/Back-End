@@ -2,6 +2,7 @@ import {MongoClient, ObjectId} from 'mongodb';
 import {LabourModel, MaterialsModel, StageModel, StageUpdateModel} from '../models';
 import data from './data.json';
 import moment from 'moment';
+import {QuizQuestionsModel} from '../models/quiz-questions.model';
 
 const pdf = require('pdf-creator-node');
 const fs = require('fs');
@@ -311,43 +312,28 @@ export class ProjectRepository {
     format: 'A4',
     orientation: 'portrait',
     border: '10mm',
-    header: {
-      height: '45mm',
-      contents: '<div style="text-align: center;">{{title}}</div>',
-    },
+
     footer: {
-      height: '28mm',
+      height: '10mm',
       contents: {
-        first: 'Cover page',
-        2: 'Second page', // Any page number is working. 1-based index
-        default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
-        last: 'Last Page',
+        // first: 'Cover page',
+        // 2: 'Second page', // Any page number is working. 1-based index
+        default: '<span style="color: #444;">© Walk with Bible {{page}}</span>/<span>{{pages}}</span>', // fallback value
+        // last: 'Last Page'
       },
     },
   };
 
-  async createPdfFile() {
-    const users = [
-      {
-        name: 'Mirakle',
-        age: '26',
-      },
-      {
-        name: 'Yabaze',
-        age: '26',
-      },
-      {
-        name: 'Jegathesan',
-        age: '26',
-      },
-    ];
+  async createPdfFile(quiz:QuizQuestionsModel) {
+    const fileName = (moment(Date())) + '.pdf';
     const document = {
       html: html,
       data: {
-        users: users,
-        title: 'Hi Yabaze..!',
+        questions: quiz.quizData,
+        bookName: quiz.bookName,
+        title: quiz.title,
       },
-      path: 'src/files/' + (moment(Date())) + '.pdf',
+      path: 'src/files/' +  fileName,
       type: '',
     };
     return new Promise<any>((resolve, reject) => {
@@ -359,6 +345,10 @@ export class ProjectRepository {
         .catch((error: any) => {
           console.error(error);
           reject(error);
+        }).finally(() => {
+          // setTimeout(function () {
+          //   fs.delete('src/files/'+fileName);
+          // }, 5000);
         });
     });
   }

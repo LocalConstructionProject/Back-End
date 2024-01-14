@@ -2,16 +2,67 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Hello world!</title>
+  <title>Walk with bible</title>
+  <style>
+      body {
+          padding: 15px;
+      }
+      h1 {
+          text-align: center;
+      }
+      h2 {
+          text-align: center;
+      }
+      .title {
+          color: #5C6AC4;
+          font-size: 20px;
+      }
+      table {
+          padding: 10px;
+      }
+      .optionHeading {
+          margin: 5px;
+          width: 20px;
+          font-size: 14px;
+          font-style: italic;
+          font-weight: bold;
+          color: #708090;
+      }
+      b {
+          font-weight: bold;
+          line-height: 1.5;
+      }
+      .optionText {
+          font-size: 14px;
+          width:40%;
+      }
+      .options {
+          font-size: 12px;
+      }
+  </style>
 </head>
 <body>
-<h1>User List</h1>
-<ul>
-  {{#each users}}
-  <li>Name: {{this.name}}</li>
-  <li>Age: {{this.age}}</li>
-  <br />
-  {{/each}}
-</ul>
+<h2 class="title">{{bookName}} Quiz</h2>
+{{#each questions}}
+<div>
+  <b>{{this.question}}</b>
+  <div class="options">
+    <table>
+      <tr>
+        <td class="optionHeading">A.</td>
+        <td class="optionText">{{this.option_1}}</td>
+        <td class="optionHeading">B.</td>
+        <td class="optionText">{{this.option_2}}</td>
+      </tr>
+      <tr>
+        <td class="optionHeading">C.</td>
+        <td class="optionText">{{this.option_3}}</td>
+        <td class="optionHeading">D.</td>
+        <td class="optionText">{{this.option_4}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+{{/each}}
 </body>
 </html>
